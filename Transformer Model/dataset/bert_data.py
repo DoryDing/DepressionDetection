@@ -30,3 +30,13 @@ class CustomBERTDataset(Dataset):
             padding='max_length',
             truncation=True,
             return_tensors='pt')  # or 'tf' for TensorFlow, depending on the framework you are using
+
+        # Extract the input IDs and attention mask from the BERT inputs
+        input_ids = inputs['input_ids'].squeeze(0)  # Remove the batch dimension
+        attention_mask = inputs['attention_mask'].squeeze(0)  # Remove the batch dimension
+
+        # Return the input IDs and attention mask as well as any other data you may need (e.g., labels)
+        return {
+            'input_ids': input_ids,
+            'attention_mask': attention_mask
+        }
