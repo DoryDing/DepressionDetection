@@ -194,7 +194,7 @@ def main():
 
     # Load and prepare data using the BERT dataset
     train_dataset = CustomBERTDataset(data_file='train_data.csv', max_length=opt.max_length)
-    val_dataset = CustomBERTDataset(data_file='path_to_your_val_data.txt', max_length=opt.max_length)
+    val_dataset = CustomBERTDataset(data_file='val_data.csv', max_length=opt.max_length)
 
     train_loader = DataLoader(train_dataset, batch_size=opt.batch_size, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=opt.batch_size, shuffle=False)

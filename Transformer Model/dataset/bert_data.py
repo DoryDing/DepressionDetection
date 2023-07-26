@@ -1,6 +1,7 @@
 import torch
 from torch.utils.data import Dataset
 from transformers import BertTokenizer
+import pandas as pd
 
 # Define your tokenizer
 bert_tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
@@ -11,9 +12,10 @@ class CustomBERTDataset(Dataset):
         # Load your data from the file (modify this according to your dataset)
         # For example, read your input sentences and labels from the file.
         # Store them in lists self.sentences and self.labels.
+        df = pd.read_csv(data_file)
 
-        self.sentences = [...]  # List of input sentences
-        self.labels = [...]  # List of labels (optional, if you have them)
+        self.sentences = df['text'].tolist()  # List of input sentences
+        self.labels = df['label'].tolist()  # List of labels (optional, if you have them)
         self.max_length = max_length
 
     def __len__(self):
